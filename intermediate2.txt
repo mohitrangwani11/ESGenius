@@ -10,6 +10,8 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 from langchain.llms import HuggingFaceHub
 
+
+
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf in pdf_docs:
@@ -65,20 +67,9 @@ def handle_userinput(user_question):
 
 
 def main():
-    #load_dotenv()
-
-
-   
-
+    load_dotenv()
     st.set_page_config(page_title="Chat with ESSGenius",
                        page_icon=":books:")
-     ######### Remove this code block######################33
-    user_chavi = st.text_input("Give me your API key :) ")
-    OPENAI_API_KEY = user_chavi
-    load_dotenv()
-    
-    st.header("Chat with ESGenius :books:")
-    ######### Remove this code block######################33
     st.write(css, unsafe_allow_html=True)
 
     if "conversation" not in st.session_state:
@@ -87,8 +78,7 @@ def main():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
 
-    
-
+    st.header("Chat with ESGenius :books:")
     user_question = st.text_input("Ask me questions around sustainbility regulations:")
     if user_question:
         handle_userinput(user_question)
